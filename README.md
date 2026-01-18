@@ -1,5 +1,5 @@
 # ai_game_town
-
+A ai town use flutter 
 need install ollama  and choose model
 
 
