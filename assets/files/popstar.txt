@@ -1,0 +1,298 @@
+popstar.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+exit
+  rotate: false
+  xy: 288, 374
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+rate
+  rotate: false
+  xy: 452, 254
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+best_score
+  rotate: false
+  xy: 549, 314
+  size: 151, 20
+  orig: 165, 28
+  offset: 5, 2
+  index: -1
+good
+  rotate: false
+  xy: 549, 336
+  size: 168, 96
+  orig: 186, 120
+  offset: 16, 12
+  index: -1
+fantastic
+  rotate: false
+  xy: 2, 379
+  size: 260, 88
+  orig: 294, 104
+  offset: 5, 16
+  index: -1
+back1
+  rotate: false
+  xy: 2, 469
+  size: 250, 26
+  orig: 256, 28
+  offset: 3, 0
+  index: -1
+score
+  rotate: false
+  xy: 719, 421
+  size: 83, 20
+  orig: 95, 28
+  offset: 6, 4
+  index: -1
+save
+  rotate: false
+  xy: 484, 194
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+resume1
+  rotate: false
+  xy: 745, 147
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+ranking
+  rotate: false
+  xy: 713, 267
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+back2
+  rotate: false
+  xy: 264, 434
+  size: 226, 26
+  orig: 234, 28
+  offset: 2, 2
+  index: -1
+star_blue
+  rotate: false
+  xy: 491, 462
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+cool
+  rotate: false
+  xy: 719, 327
+  size: 166, 92
+  orig: 186, 120
+  offset: 16, 14
+  index: -1
+star_s_purple
+  rotate: false
+  xy: 976, 94
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
+  index: -1
+star_s_green
+  rotate: false
+  xy: 541, 456
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
+  index: -1
+resume
+  rotate: false
+  xy: 745, 207
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+sound_off
+  rotate: false
+  xy: 264, 379
+  size: 20, 28
+  orig: 36, 28
+  offset: 0, 0
+  index: -1
+star_s_red
+  rotate: false
+  xy: 976, 48
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
+  index: -1
+p_purple
+  rotate: false
+  xy: 887, 327
+  size: 82, 82
+  orig: 100, 100
+  offset: 9, 6
+  index: -1
+star_red
+  rotate: false
+  xy: 974, 317
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+title
+  rotate: false
+  xy: 484, 2
+  size: 288, 129
+  orig: 298, 129
+  offset: 10, 0
+  index: -1
+back3
+  rotate: false
+  xy: 264, 462
+  size: 225, 24
+  orig: 235, 28
+  offset: 1, 4
+  index: -1
+target
+  rotate: false
+  xy: 492, 434
+  size: 104, 20
+  orig: 110, 28
+  offset: 4, 3
+  index: -1
+star_s_blue
+  rotate: false
+  xy: 587, 456
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
+  index: -1
+game_over
+  rotate: false
+  xy: 2, 206
+  size: 335, 75
+  orig: 335, 75
+  offset: 0, 0
+  index: -1
+sound_on
+  rotate: false
+  xy: 633, 456
+  size: 36, 28
+  orig: 36, 28
+  offset: 0, 0
+  index: -1
+stage_clear
+  rotate: false
+  xy: 774, 2
+  size: 200, 143
+  orig: 200, 143
+  offset: 0, 0
+  index: -1
+star_yellow
+  rotate: false
+  xy: 974, 267
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+star_purple
+  rotate: false
+  xy: 971, 367
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+stage
+  rotate: false
+  xy: 598, 434
+  size: 84, 20
+  orig: 90, 28
+  offset: 4, 3
+  index: -1
+star_s_yellow
+  rotate: false
+  xy: 976, 2
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
+  index: -1
+new_game
+  rotate: false
+  xy: 484, 133
+  size: 259, 59
+  orig: 259, 59
+  offset: 0, 0
+  index: -1
+star_green
+  rotate: false
+  xy: 963, 417
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+back_short
+  rotate: false
+  xy: 288, 283
+  size: 44, 26
+  orig: 50, 28
+  offset: 2, 2
+  index: -1
+p_yellow
+  rotate: false
+  xy: 804, 421
+  size: 80, 80
+  orig: 100, 100
+  offset: 8, 9
+  index: -1
+mroe_game
+  rotate: false
+  xy: 288, 314
+  size: 259, 58
+  orig: 259, 58
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 452, 206
+  size: 26, 28
+  orig: 36, 28
+  offset: 5, 0
+  index: -1
+back_stage
+  rotate: false
+  xy: 2, 104
+  size: 480, 100
+  orig: 480, 100
+  offset: 0, 0
+  index: -1
+excellent
+  rotate: false
+  xy: 2, 283
+  size: 284, 94
+  orig: 310, 120
+  offset: 17, 17
+  index: -1
+p_blue
+  rotate: false
+  xy: 887, 411
+  size: 74, 74
+  orig: 100, 100
+  offset: 12, 10
+  index: -1
+top
+  rotate: false
+  xy: 2, 2
+  size: 480, 100
+  orig: 480, 100
+  offset: 0, 0
+  index: -1
+win
+  rotate: false
+  xy: 339, 206
+  size: 111, 69
+  orig: 119, 69
+  offset: 0, 0
+  index: -1
