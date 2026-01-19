@@ -85,7 +85,14 @@ class ImageTexture {
        agentStr = await rootBundle.loadString("assets/files/agent.json");
     }
     print("agentStr=$agentStr");
-    Map<String, dynamic> data = jsonDecode(agentStr);
+    Map<String, dynamic> data;
+    try {
+     data = jsonDecode(agentStr);
+    }catch (e){
+      print("error load custom data ${e.toString()}");
+      var gentStr = await rootBundle.loadString("assets/files/agent.json");
+       data = jsonDecode(gentStr);
+    }
     List<dynamic> users = data['users'];
     print('--- 开始遍历用户信息 ---');
     for (var user in users) {
