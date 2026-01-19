@@ -64,7 +64,7 @@ class ScreenStart extends BaseScreen {
 
   Future<void> loadPlan() async{
     await ImageTexture.loadUsers();
-    ollama.createUsers();
+    // ollama.createUsers();//希望随机角色可以开启
     ImageTexture.loadPosition();
     var loadNum = Math.min(4, ImageTexture.userInfos.length);
     progressActor?.setProgress(20);
