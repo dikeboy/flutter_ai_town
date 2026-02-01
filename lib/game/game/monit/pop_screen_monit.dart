@@ -14,6 +14,7 @@ import 'package:mini_game/game/game/viewmodel/ollama_utils.dart';
 import 'dart:math' as Math;
 import '../actor/actor_all.dart';
 import '../image_texture.dart';
+import '../utils/path_util.dart';
 
 class ScreenMonit extends BaseScreen {
   @override
@@ -25,7 +26,7 @@ class ScreenMonit extends BaseScreen {
   MMTextActor? mmTextActor;
   List<MMHouseActor> houseList = [];
   List<BaseRoleActor> roleActors = [];
-  double step = 12;
+  double step = 6;
 
   ScreenMonit(this.width, this.height) : super(width, height);
   var ollama = OllamaUtils();
@@ -34,32 +35,33 @@ class ScreenMonit extends BaseScreen {
   Future<void> onLoad() async {
     double hheight = 190;
     double hwidth  = width/5;
-    var houseActor = createHouseActor(0, height - hheight, hwidth, hheight);
-    houseList.add(houseActor);
-    houseActor = createHouseActor(hwidth, height - hheight, hwidth, hheight);
-    houseList.add(houseActor);
-    houseActor = createHouseActor(hwidth*2, height - hheight, hwidth, hheight);
-    houseList.add(houseActor);
-    houseActor = createHouseActor(hwidth*3, height - hheight, hwidth, hheight);
-    houseList.add(houseActor);
-    houseActor = createHouseActor(hwidth*4, height - hheight, hwidth, hheight);
-    houseList.add(houseActor);
-    for (int i = 0; i < houseList.length; i++) {
-      await add(houseList[i]);
-    }
-    var gardenActor = createImageActor(ImageTexture.gardenImage,0, 0, 300, 270);
-    await add(gardenActor);
+    // var houseActor = createHouseActor(0, height - hheight, hwidth, hheight);
+    // houseList.add(houseActor);
+    // houseActor = createHouseActor(hwidth, height - hheight, hwidth, hheight);
+    // houseList.add(houseActor);
+    // houseActor = createHouseActor(hwidth*2, height - hheight, hwidth, hheight);
+    // houseList.add(houseActor);
+    // houseActor = createHouseActor(hwidth*3, height - hheight, hwidth, hheight);
+    // houseList.add(houseActor);
+    // houseActor = createHouseActor(hwidth*4, height - hheight, hwidth, hheight);
+    // houseList.add(houseActor);
+    // for (int i = 0; i < houseList.length; i++) {
+    //   await add(houseList[i]);
+    // }
+    //
+    // var gardenActor = createImageActor(ImageTexture.gardenImage,0, 0, 300, 270);
+    // await add(gardenActor);
+    //
+    // var chitangActor = createImageActor(ImageTexture.chitangImage,width-300,-100,400,400);
+    // await add(chitangActor);
 
-    var chitangActor = createImageActor(ImageTexture.chitangImage,width-300,-100,400,400);
-    await add(chitangActor);
+    // var bgActor = TestBgRect(width, height, (){});
+    // await add(bgActor);
 
     mmTextActor = MMTextActor(width, height,(hour){
       changeRolePlan(hour);
     });
     add(mmTextActor!);
-
-    houseActor = createHouseActor(550, height - hheight, width - 550, hheight);
-    houseList.add(houseActor);
 
 
     roleActor = BaseRoleActor(ImageTexture.roleImage, ImageBean.createImageBean(6, 2, 23, 31), () {});
@@ -69,11 +71,22 @@ class ScreenMonit extends BaseScreen {
     roleActor?.changeRoleDirection(RoleDirection.UP);
     await add(roleActor!);
 
-    createOtherRoles();
+     createOtherRoles();
 
     mmTextActor?.renderTime();
+
+    var backActor = CommonTextActor(60,20,callBack: (){
+      (parent as MyGame).changeScreen(1);
+    });
+    backActor.x = 10;
+    backActor.y = 10;
+    backActor.writeText("Back");
+    await add(backActor);
+
     // roleActors[0].walk(500, 300);
   }
+
+
 
   Future<void> createOtherRoles() async {
     for (int i = 0; i < ImageTexture.otherRoles.length; i++) {
@@ -83,6 +96,30 @@ class ScreenMonit extends BaseScreen {
       role?.changeRoleDirection(RoleDirection.DOWN);
       roleActors.add(role);
       await add(role!);
+    }
+    // actorTestWalk();
+  }
+
+  Future<void> actorTestWalk() async{
+    roleActors?[0]?.x = 100;
+    roleActors?[0]?.y = 100;
+    actorWalkTo(roleActors[0],600, 500);
+  }
+  Future<void> actorWalkTo(BaseRoleActor roleActor,int posX,int posY) async{
+    var destX = (posX*1024/width).toInt();
+    var destY = (posY*1024/height).toInt();
+    var startX = (roleActor.x*1024/width).toInt();
+    var startY = (roleActor.y*1024/height).toInt();
+    var planner = PathFinder(lastPathList,startX, startY, destX, destY);
+    List<List<int>> route = planner.plan( startX, startY, destX,destY);
+    // roleActor.x = roleActor.x-21;
+    // roleActor.y = roleActor.y-31;
+    for(int i=0;i<route.length;i++){
+      var x = roleActor.x+route[i][0]*width/1024;
+      var y = roleActor.y+route[i][1]*height/1024;
+      await roleActor.walk(x,y);
+      if(isRemoved)
+        break;
     }
   }
 
@@ -163,12 +200,18 @@ class ScreenMonit extends BaseScreen {
         var plan = user.plans[hour];
         if (plan.pos == "家") {
           mmTextActor?.writeText("${user.name}准备回家了",systemData: true);
+
           roleActors[i].walk( roleActors[i].houseX,  roleActors[i].houseY);
+
+          actorWalkTo(roleActors[i],(roleActors[i].houseX.toInt()),
+          roleActors[i].houseY.toInt());
         } else {
           var destPosition = ImageTexture.positionBean[plan.pos];
           if (destPosition != null) {
             mmTextActor?.writeText("${user.name}准备去${plan.pos}${plan.plan}",systemData: true);
-            roleActors[i].walk(destPosition.x.toDouble()+random.nextInt(80) -40, destPosition.y.toDouble()+random.nextInt(80)-40);
+            actorWalkTo(roleActors[i],(destPosition.x.toDouble()+random.nextInt(80) -40).toInt(),
+                (destPosition.y.toDouble()+random.nextInt(80)-40).toInt());
+            // roleActors[i].walk(destPosition.x.toDouble()+random.nextInt(80) -40, destPosition.y.toDouble()+random.nextInt(80)-40);
           }
         }
       }
@@ -229,4 +272,5 @@ class ScreenMonit extends BaseScreen {
     }
     return false;
   }
+
 }

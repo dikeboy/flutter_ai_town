@@ -152,6 +152,7 @@ class OllamaUtils {
     String tip ="帮忙创造6个角色，包含名字，个人介绍，还有日常作息，除了起床,吃饭，睡觉,其它都为几点去哪里干嘛,地点从下面几个中选择(公园,池塘,房间1，房间2，房间3,房间4，房间5) 生成json格式给我，格式如下： { \"users\": [ { \"name\": \"大卫\", \"introduce\":\"爱好打球，看书\", \"life\": \"早上8点起床,9点吃饭,10点到12点看书,12点吃饭,13点到6点睡午觉,7点吃饭,8点到10点看电视,然后睡觉\" }]";
     String? res = await callDioOllama(tip,think: true,temperature: 0.5);
     if(res!=null&&res.contains("[")){
+      res = res.substring(res.indexOf("{"),res.lastIndexOf("}"));
       ShareUtils.putStringData("usersInfo", res.trim());
     }
     return res;

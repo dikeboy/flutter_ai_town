@@ -61,6 +61,7 @@ flutter:
     - assets/images/popstar.png
     - assets/files/popstar.txt
     - assets/files/agent.json
+    - assets/files/map_pos.json
     - assets/files/position.json
     - assets/images/popstar.png
     - assets/images/star_p_blue.png

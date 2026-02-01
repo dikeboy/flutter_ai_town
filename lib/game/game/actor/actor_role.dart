@@ -73,7 +73,6 @@ class BaseRoleActor extends BaseActor {
       return;
     isWalk = true;
     double otherStep = 2;
-    print("walk to position x=$x y=$y");
      if(y<destY){
        while(y<destY){
          y=y+otherStep;
@@ -103,6 +102,7 @@ class BaseRoleActor extends BaseActor {
      }
      x = destX;
      y = destY;
+    print("walk to position x=$x y=$y");
      changeRoleDirection(RoleDirection.DOWN);
      isWalk = false;
   }

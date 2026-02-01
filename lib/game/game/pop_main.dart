@@ -54,6 +54,7 @@ class MyGame extends FlameGame with TapCallbacks,KeyboardEvents {
     lastScreen = screenStart;
     screenState = 1;
 
+    print("size:width=${size.x} height=${size.y}");
     tipTextActor = CommonTextActor(size.x-40,30);
     tipTextActor.x = 20;
     changeTipText(OllamaUtils.defaultModel);
@@ -88,10 +89,17 @@ void changeTipText(String model){
 
   void changeScreen(int state) {
     if (state == 2) {
+      screenMonit = ScreenMonit(size.x, size.y);
       remove(screenStart);
-      remove(tipTextActor);
+      if(contains(tipTextActor)){
+        remove(tipTextActor);
+      }
       add(screenMonit);
       lastScreen = screenMonit;
+    }else if(state==1){
+      add(screenStart);
+      remove(screenMonit);
+      lastScreen = screenStart;
     }
   }
 

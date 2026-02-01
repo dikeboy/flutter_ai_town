@@ -10,7 +10,7 @@ import '../image_texture.dart';
 import '../pop_screen_play.dart';
 import 'action_util.dart';
 import 'actor_animation.dart';
-
+import 'package:flame/events.dart';
 typedef ActorCallBack = void Function();
 
 typedef TimeCallBack = void Function(int hour);

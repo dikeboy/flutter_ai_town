@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:mini_game/game/game/actor/actor_progress.dart';
 import 'package:mini_game/game/game/pop_main.dart';
+import 'package:mini_game/game/game/utils/path_util.dart';
 import 'package:mini_game/game/game/viewmodel/ollama_utils.dart';
 import 'actor/actor_all.dart';
 import 'base/screen_base.dart';
@@ -25,6 +26,7 @@ class ScreenStart extends BaseScreen {
 
   @override
   Future<void> onLoad() async {
+    print("onload");
      progressActor = ProgressActor(width,height, () {});
     progressActor?.x = 100;
     progressActor?.y = 60;
@@ -58,9 +60,19 @@ class ScreenStart extends BaseScreen {
 
     await add(playActor);
     await add(exitActor);
+    var pathData = await ImageTexture.getPathData();
+    if(pathData!=null){
+       initPathFile(pathData);
+    }
+    // PathPlanner planner = PathPlanner();
+    // List<List<int>> route = planner.planPath( 100, 100, 760, 720);
+    // print("\n规划的路线移动指令:");
+    // print(route);
 
     loadPlan();
+    print("onload fail");
   }
+
 
   Future<void> loadPlan() async{
     await ImageTexture.loadUsers();
@@ -80,7 +92,6 @@ class ScreenStart extends BaseScreen {
             planBean.pos = data[j]["pos"];
             planBean.plan = data[j]["plan"];
             ImageTexture.userInfos[i].plans.add(planBean);
-
           }
         }
       }

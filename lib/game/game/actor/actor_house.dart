@@ -2,12 +2,21 @@ import 'dart:ui';
 import 'dart:ui' as Painting;
 
 import 'package:flutter/material.dart';
+import 'package:mini_game/game/game/utils/path_util.dart';
 
 import '../image_texture.dart';
 import 'actor_all.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 
+class BackActor extends BaseActor {
+  BackActor(width, height, callBack) : super(width, height, callBack);
 
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+  }
+}
 class MMImageActor extends BaseActor {
   final Painting.Image spriteImage;
   final ImageBean imageBean;
@@ -56,7 +65,7 @@ class MMHouseActor extends BaseActor {
 }
 
 
-class CommonTextActor extends PositionComponent {
+class CommonTextActor extends PositionComponent with TapCallbacks  {
   @override
   double width = 0;
   @override
@@ -65,8 +74,9 @@ class CommonTextActor extends PositionComponent {
   String texts ="";
   bool isWriting = false;
   bool isTimeRender = true;
+  final ActorCallBack? callBack;
 
-  CommonTextActor(this.width, this.height) : super(position:Vector2(0,0),size: Vector2(width, height)) {}
+  CommonTextActor(this.width, this.height,{this.callBack}) : super(position:Vector2(0,0),size: Vector2(width, height)) {}
 
   Future<void> writeText(String text,{bool systemData=false}) async {
       this.texts = text;
@@ -76,6 +86,14 @@ class CommonTextActor extends PositionComponent {
   void render(Canvas canvas) {
     super.render(canvas);
     _textPaint.render(canvas, texts, Vector2(0,0));
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    super.onTapUp(event);
+    if (callBack != null) {
+      callBack!.call();
+    }
   }
 }
 
@@ -137,6 +155,7 @@ class MMTextActor extends PositionComponent {
     isTimeRender = false;
   }
 
+
   @override
   void render(Canvas canvas) {
     super.render(canvas);
@@ -145,6 +164,27 @@ class MMTextActor extends PositionComponent {
       for(int i=0;i<texts.length;i++){
         _textPaint.render(canvas, texts[i], Vector2(0, i*25));
       }
+    }
+
+  }
+}
+
+class TestBgRect extends BaseActor{
+  TestBgRect(width,height,callBack)
+      : super(width,height, callBack);
+  var paint = Paint();
+
+  @override
+  void render(Canvas canvas) {
+    // TODO: implement render
+    super.render(canvas);
+    paint.color = Colors.black;
+    for(int i=0;i<lastPathList.length;i++){
+      var d = lastPathList[i];
+      canvas.drawRect(Rect.fromLTWH(
+          d.x.toDouble()*800/1024, d.y.toDouble()*600/1024,d.width.toDouble()*800/1024,
+          d.height.toDouble()*600/1024),
+          paint);
     }
   }
 }

@@ -24,6 +24,10 @@ class ImageTexture {
   static  List<UserInfoBean> userInfos = [];
   static Map<String, ImageBean> images = HashMap();
 
+
+  static Future<String?> getPathData() async{
+    return await rootBundle.loadString("assets/files/map_pos.json");
+  }
   static Future<void> init() async {
     var data = await rootBundle.loadString("assets/files/popstar.txt");
     var list = data.split("\n");
@@ -65,7 +69,7 @@ class ImageTexture {
     purpleImage = await Flame.images.load('star_p_purple.png');
     redImage = await Flame.images.load('star_p_red.png');
     yellowImage = await Flame.images.load('star_p_yellow.png');
-    imageBg = await Flame.images.load('newbg.png');
+    imageBg = await Flame.images.load('newbg2.png');
     roleImage = await Flame.images.load("mm_role.png");
     houseImage = await Flame.images.load("mm_house.png");
     gardenImage = await Flame.images.load("mm_garden.jpg");
@@ -82,16 +86,16 @@ class ImageTexture {
   static Future<void> loadUsers() async{
     var agentStr = await ShareUtils.getStringData("usersInfo");
     if(agentStr==null||agentStr.length<10){
-       agentStr = await rootBundle.loadString("assets/files/agent.json");
+      agentStr = await rootBundle.loadString("assets/files/agent.json");
     }
     print("agentStr=$agentStr");
     Map<String, dynamic> data;
     try {
-     data = jsonDecode(agentStr);
+      data = jsonDecode(agentStr);
     }catch (e){
       print("error load custom data ${e.toString()}");
       var gentStr = await rootBundle.loadString("assets/files/agent.json");
-       data = jsonDecode(gentStr);
+      data = jsonDecode(gentStr);
     }
     List<dynamic> users = data['users'];
     print('--- 开始遍历用户信息 ---');
